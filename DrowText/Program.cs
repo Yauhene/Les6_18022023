@@ -21,17 +21,21 @@ string caption = "Intensive C# demo text";
 int screenWindthPosition = (Console.WindowWidth - caption.Length) / 2;
 int screenHightPosition = Console.WindowHeight / 2;
 
-void DrowText(string text, int left, int top)
+void DrawText(string text, int left, int top)
 {
     Console.SetCursorPosition(left, top);
     Console.WriteLine(text);
 }
 
+Console.Clear();
 DrawText(caption, screenWindthPosition, screenHightPosition);
+Console.WriteLine("Для продолжения жми Enter...");
+Console.ReadLine(); // чтобы сравнить работу двух вызовов
 
-// //DrawText(
-//     text: caption,
-//     left: screenWindthPosition,
-//     top: screenHightPosition
-//     );
+Console.Clear();
+DrawText(
+    text: caption,
+    left: screenWindthPosition,
+    top: screenHightPosition
+    );
 
