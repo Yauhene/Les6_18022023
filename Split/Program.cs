@@ -1,2 +1,30 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Пишем парсинг входной строки
+using System.Linq;
+
+string text = "(1,2) (2,3) (4,5) (9,7)" // строка с координатами
+           .Replace("(", "") // заменяет левую скобку на нулевую строку
+           .Replace(")", "") // заменяет правую скобку на нулевую строку
+           ;
+
+Console.WriteLine("В итоге получаем:");
+Console.WriteLine(text);
+
+var data = text.Split(" ") //указывает программе на то, что разделителем в тексте является пробел
+                .Select(item => item.Split(',')) // каждый элемент массива будет преобразован в массив из двух элементов
+                                                  // (получится массив в массиве)
+                .Select(e => (x: int.Parse(e[0]), y: int.Parse(e[1]))) // преобразуем строковые переменные в целочисленные 
+                                                                // "массив координат превращаем в кортеж чисел" (лектор)  
+                .Where(e => e.x % 2 == 0)  // только для тех элементов, где координата x - четное число                                                  
+                .Select(point => (point.x * 10, point.y)) // увеличиваем координату x в 10 раз
+                                                            // еще в зародыше                                                                        
+                .ToArray(); //пакует разбитую строку по элементам парами строкового массива data[], 
+
+for(int i=0; i<data.Length; i++)
+{
+    Console.Write(data[i]); 
+    // Console.Write(" , ");
+    // Console.WriteLine(data[i]);
+    
+    Console.WriteLine();
+}
+//Console.WriteLine("Hello, World!");
